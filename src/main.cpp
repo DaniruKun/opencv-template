@@ -1,11 +1,9 @@
-#include "App.hpp"
-#include "opencv2/core.hpp"
 #include <iostream>
 
 using namespace std;
 
 int main()
 {
-    cout << "Hello world!";
+    cout << "Hello world!" << endl;
     return 0;
 }

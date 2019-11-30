@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(cctv_latency_tester CXX)
+project(opencv-template CXX)
 
 set(CMAKE_CXX_STANDARD 14)
 
@@ -10,9 +10,7 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release")
 endif()
 
-set(Sources
-        src/App.cpp
-        src/App.hpp src/main.cpp src/main.hpp)
+set(Sources src/main.cpp src/main.hpp)
 
 find_package( Opencv COMPONENTS core features2d highgui imgproc imgcodecs video REQUIRED )
 
@@ -29,14 +27,14 @@ set(CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS} -Wall -fno-strict-aliasing -DLWS
 set(CMAKE_CXX_FLAGS_DEBUG   "-DDEBUG -O0 -g3")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
-add_executable(cctv-latency-tester ${Sources})
+add_executable(opencv-template ${Sources})
 
-set_target_properties(cctv-latency-tester PROPERTIES COMPILE_FLAGS "-include main.hpp")
+set_target_properties(opencv-template PROPERTIES COMPILE_FLAGS "-include main.hpp")
 
-target_link_libraries(cctv-latency-tester ${OpenCV_LIBS} pthread)
+target_link_libraries(opencv-template ${OpenCV_LIBS} pthread)
 
 add_custom_target(WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
-set_target_properties(cctv-latency-tester PROPERTIES
+set_target_properties(opencv-template PROPERTIES
         MACOSX_BUNDLE TRUE
         MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist)
