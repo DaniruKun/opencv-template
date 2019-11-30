@@ -12,7 +12,7 @@ endif()
 
 set(Sources
         src/App.cpp
-        src/App.hpp)
+        src/App.hpp src/main.cpp src/main.hpp)
 
 find_package( Opencv COMPONENTS core features2d highgui imgproc imgcodecs video REQUIRED )
 
@@ -30,6 +30,8 @@ set(CMAKE_CXX_FLAGS_DEBUG   "-DDEBUG -O0 -g3")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
 add_executable(cctv-latency-tester ${Sources})
+
+set_target_properties(cctv-latency-tester PROPERTIES COMPILE_FLAGS "-include main.hpp")
 
 target_link_libraries(cctv-latency-tester ${OpenCV_LIBS} pthread)
 
